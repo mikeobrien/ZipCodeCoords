@@ -1,0 +1,11 @@
+﻿<Window x:Class="TestHarness.Main"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Zip Codes Test Harness" Height="269" Width="494">
+    <Grid>
+        <Label Height="28" HorizontalAlignment="Left" Margin="32,20,0,0" Name="label1" VerticalAlignment="Top" Width="61">Zip Code</Label>
+        <TextBox Height="23" Margin="99,22,0,0" Name="ZipCodeTextBox" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" />
+        <ListBox Margin="32,68,46,50" Name="ResultsListBox" />
+        <Button Height="23" Margin="225,22,172,0" Name="LookupButton" VerticalAlignment="Top" Click="LookupButton_Click">Lookup</Button>
+    </Grid>
+</Window>

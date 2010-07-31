@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010 
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZipCodes", "Component\ZipCodes.csproj", "{9832D966-BFA4-4D3F-8C7C-F3558027CDA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHarness", "TestHarness\TestHarness.csproj", "{83012E0F-20D3-4151-B8BD-2033FBABCA46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter", "DataConverter\DataConverter.csproj", "{076B0276-F5D0-4791-97FF-AAB23A6D9E63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9832D966-BFA4-4D3F-8C7C-F3558027CDA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9832D966-BFA4-4D3F-8C7C-F3558027CDA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9832D966-BFA4-4D3F-8C7C-F3558027CDA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9832D966-BFA4-4D3F-8C7C-F3558027CDA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83012E0F-20D3-4151-B8BD-2033FBABCA46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83012E0F-20D3-4151-B8BD-2033FBABCA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83012E0F-20D3-4151-B8BD-2033FBABCA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83012E0F-20D3-4151-B8BD-2033FBABCA46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{076B0276-F5D0-4791-97FF-AAB23A6D9E63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{076B0276-F5D0-4791-97FF-AAB23A6D9E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{076B0276-F5D0-4791-97FF-AAB23A6D9E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{076B0276-F5D0-4791-97FF-AAB23A6D9E63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
