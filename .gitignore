@@ -1,6 +1,7 @@
 obj
 bin
 .nu
+pkg
 _ReSharper.*
 *.user
 *.suo
