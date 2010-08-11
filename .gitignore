@@ -1,5 +1,6 @@
-obj 
-bin 
-_ReSharper.* 
-*.user 
+obj
+bin
+.nu
+_ReSharper.*
+*.user
 *.suo
