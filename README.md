@@ -1,4 +1,4 @@
-Zip Code Cooridnates
+Zip Code Coordinates
 =============
 
 The Zip Code to Coordinates .NET Component enables you to retrieve the global coordinates (Latitude and Longitude) of a Zip Code. This small component, with a footprint of only 650k, has mapping data embedded as a binary resource so it does not require any external data.
@@ -26,7 +26,7 @@ Installation
 Resources
 ------------
 
-[ZCTA Main](http://zipcodecoords.codeplex.com/wikipage?title=http%3a%2f%2fwww.census.gov%2fgeo%2fZCTA%2fzcta.html&referringTitle=Home): U.S. Census Bureau ZCTA main page. This page contains links to information regaring ZCTA. 
-[ZCTA Downloads](http://zipcodecoords.codeplex.com/wikipage?title=http%3a%2f%2fwww.census.gov%2fgeo%2fwww%2fgazetteer%2fplaces2k.html&referringTitle=Home): U.S. Census Bureau data downloads and file format specs.
-[Understanding ZCTA's](http://zipcodecoords.codeplex.com/wikipage?title=http%3a%2f%2fwww.census.gov%2fgeo%2fZCTA%2fshort_sdc_zcta.pdf&referringTitle=Home): U.S. Census Bureau brochure explaining ZCTA's.
+[ZCTA Main](http://zipcodecoords.codeplex.com/wikipage?title=http%3a%2f%2fwww.census.gov%2fgeo%2fZCTA%2fzcta.html&referringTitle=Home): U.S. Census Bureau ZCTA main page. This page contains links to information regaring ZCTA.  
+[ZCTA Downloads](http://zipcodecoords.codeplex.com/wikipage?title=http%3a%2f%2fwww.census.gov%2fgeo%2fwww%2fgazetteer%2fplaces2k.html&referringTitle=Home): U.S. Census Bureau data downloads and file format specs.  
+[Understanding ZCTA's](http://zipcodecoords.codeplex.com/wikipage?title=http%3a%2f%2fwww.census.gov%2fgeo%2fZCTA%2fshort_sdc_zcta.pdf&referringTitle=Home): U.S. Census Bureau brochure explaining ZCTA's.  
 [U.S. Census Bureau](http://zipcodecoords.codeplex.com/wikipage?title=http%3a%2f%2fwww.census.gov&referringTitle=Home)
