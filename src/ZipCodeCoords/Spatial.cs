@@ -27,7 +27,7 @@ namespace ZipCodeCoords
         {
             var coordinates = new List<Coordinate>();
 
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("ZipCodes.Data.ZipSpatial.dat"))
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("ZipCodeCoords.Data.ZipSpatial.dat"))
             using (var reader = new BinaryReader(stream))
             {
                 do
