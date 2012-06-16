@@ -5,8 +5,8 @@ require_relative "gallio-task"
 reportsPath = "reports"
 version = ENV["BUILD_NUMBER"]
 
-task :build => [:createPackage]
-task :pushPackages => [:pushPackage]
+task :build => :createPackage
+task :deploy => :pushPackage
 
 assemblyinfo :assemblyInfo do |asm|
     asm.version = version
@@ -24,7 +24,7 @@ msbuild :buildLibrary => :assemblyInfo do |msb|
     msb.solution = "src/ZipCodeCoords/ZipCodeCoords.csproj"
 end
 
-msbuild :buildTests => [:buildLibrary] do |msb|
+msbuild :buildTests => :buildLibrary do |msb|
     msb.properties :configuration => :Release
     msb.targets :Clean, :Build
     msb.solution = "src/Tests/Tests.csproj"
@@ -58,6 +58,12 @@ task :prepPackage => :unitTests do
 	FileSystem.CopyFiles(File.join(binPath, "ZipCodeCoords.pdb"), packageLibPath)
 end
 
+nugetpack :createPackage => :createSpec do |nugetpack|
+   nugetpack.nuspec = File.join(packagePath, nuspec)
+   nugetpack.base_folder = packagePath
+   nugetpack.output = deployPath
+end
+
 nuspec :createSpec => :prepPackage do |nuspec|
    nuspec.id = "zipcodecoords"
    nuspec.version = version
@@ -73,12 +79,6 @@ nuspec :createSpec => :prepPackage do |nuspec|
    nuspec.working_directory = packagePath
    nuspec.output_file = nuspec
    nuspec.tags = "zipcode coordinates"
-end
-
-nugetpack :createPackage => :createSpec do |nugetpack|
-   nugetpack.nuspec = File.join(packagePath, nuspec)
-   nugetpack.base_folder = packagePath
-   nugetpack.output = deployPath
 end
 
 nugetpush :pushPackage => :createPackage do |nuget|

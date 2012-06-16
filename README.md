@@ -27,6 +27,6 @@ Resources
 ------------
 
 [ZCTA Main](http://www.census.gov/geo/ZCTA/zcta.html): U.S. Census Bureau ZCTA main page. This page contains links to information regaring ZCTA.  
-[2010 ZCTA Download](http://www.census.gov/geo/www/gazetteer/gazetteer2010.html) and [file layout](http://www.census.gov/geo/www/gazetteer/gazetteer2010_layout.html#zcta): U.S. Census Bureau data downloads and file format specs.
+[2010 ZCTA Download](http://www.census.gov/geo/www/gazetteer/gazetteer2010.html) and [file layout](http://www.census.gov/geo/www/gazetteer/gazetteer2010_layout.html#zcta): U.S. Census Bureau data downloads and file format specs.  
 [Understanding ZCTA's](http://www.census.gov/geo/ZCTA/short_sdc_zcta.pdf): U.S. Census Bureau brochure explaining ZCTA's.  
 [U.S. Census Bureau](http://www.census.gov)
