@@ -47,13 +47,9 @@ nugetApiKey = ENV["NUGET_API_KEY"]
 deployPath = "deploy"
 
 packagePath = File.join(deployPath, "package")
-nuspec = "zipcodecoords.nuspec"
+nuspecFilename = "zipcodecoords.nuspec"
 packageLibPath = File.join(packagePath, "lib")
 binPath = "src/ZipCodeCoords/bin/Release"
-
-nuspec :yada => :prepPackage do |nuspec|
-    nuspec.id = "zipcodecoords"
-end
 
 task :prepPackage => :unitTests do
 	FileSystem.DeleteDirectory(deployPath)
@@ -75,12 +71,12 @@ nuspec :createSpec => :prepPackage do |nuspec|
    nuspec.projectUrl = "https://github.com/mikeobrien/ZipCodeCoords"
    nuspec.iconUrl = "https://github.com/mikeobrien/ZipCodeCoords/raw/master/misc/logo.png"
    nuspec.working_directory = packagePath
-   nuspec.output_file = nuspec
+   nuspec.output_file = nuspecFilename
    nuspec.tags = "zipcode coordinates"
 end
 
 nugetpack :createPackage => :createSpec do |nugetpack|
-   nugetpack.nuspec = File.join(packagePath, nuspec)
+   nugetpack.nuspec = File.join(packagePath, nuspecFilename)
    nugetpack.base_folder = packagePath
    nugetpack.output = deployPath
 end
