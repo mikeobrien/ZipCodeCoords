@@ -5,42 +5,26 @@ require_relative "gallio-task"
 reportsPath = "reports"
 version = ENV["BUILD_NUMBER"]
 
-task :build => [:createCorePackage, :createNHibernatePackage]
-task :pushPackages => [:pushCorePackage, :pushNHibernatePackage]
+task :build => [:createPackage]
+task :pushPackages => [:pushPackage]
 
-assemblyinfo :coreAssemblyInfo do |asm|
+assemblyinfo :assemblyInfo do |asm|
     asm.version = version
     asm.company_name = "Ultraviolet Catastrophe"
-    asm.product_name = "Gribble"
-    asm.title = "Gribble"
-    asm.description = "Gribble ORM"
-    asm.copyright = "Copyright (c) 2011 Ultraviolet Catastrophe"
-    asm.output_file = "src/Gribble/Properties/AssemblyInfo.cs"
+    asm.product_name = "Zip Code Coords"
+    asm.title = "Zip Code Coords"
+    asm.description = "Zip code coordinate lookup."
+    asm.copyright = "Copyright (c) 2012 Ultraviolet Catastrophe"
+    asm.output_file = "src/ZipCodeCoords/Properties/AssemblyInfo.cs"
 end
 
-msbuild :buildCore => :coreAssemblyInfo do |msb|
+msbuild :buildLibrary => :assemblyInfo do |msb|
     msb.properties :configuration => :Release
     msb.targets :Clean, :Build
-    msb.solution = "src/Gribble/Gribble.csproj"
+    msb.solution = "src/ZipCodeCoords/ZipCodeCoords.csproj"
 end
 
-assemblyinfo :nhibernateAssemblyInfo do |asm|
-    asm.version = version
-    asm.company_name = "Ultraviolet Catastrophe"
-    asm.product_name = "Gribble NHibernate Integration"
-    asm.title = "Gribble NHibernate Integration"
-    asm.description = "Gribble NHibernate Integration"
-    asm.copyright = "Copyright (c) 2011 Ultraviolet Catastrophe"
-    asm.output_file = "src/Gribble.NHibernate/Properties/AssemblyInfo.cs"
-end
-
-msbuild :buildNHibernate => [:buildCore, :nhibernateAssemblyInfo] do |msb|
-    msb.properties :configuration => :Release
-    msb.targets :Clean, :Build
-    msb.solution = "src/Gribble/Gribble.csproj"
-end
-
-msbuild :buildTestProject => [:buildCore, :buildNHibernate] do |msb|
+msbuild :buildTests => [:buildLibrary] do |msb|
     msb.properties :configuration => :Release
     msb.targets :Clean, :Build
     msb.solution = "src/Tests/Tests.csproj"
@@ -50,7 +34,7 @@ task :unitTestInit do
 	FileSystem.EnsurePath(reportsPath)
 end
 
-gallio :unitTests => [:buildTestProject, :unitTestInit] do |runner|
+gallio :unitTests => [:buildTests, :unitTestInit] do |runner|
 	runner.echo_command_line = true
 	runner.add_test_assembly("src/Tests/bin/Release/Tests.dll")
 	runner.verbosity = 'Normal'
@@ -62,83 +46,43 @@ end
 nugetApiKey = ENV["NUGET_API_KEY"]
 deployPath = "deploy"
 
-corePackagePath = File.join(deployPath, "corepackage")
-coreNuspec = "gribble.nuspec"
-corePackageLibPath = File.join(corePackagePath, "lib")
-coreBinPath = "src/Gribble/bin/Release"
-
-nhibernatePackagePath = File.join(deployPath, "nhpackage")
-nhibernateNuspec = "gribble.nhibernate.nuspec"
-nhibernatePackageLibPath = File.join(nhibernatePackagePath, "lib")
-nhibernateBinPath = "src/Gribble.NHibernate/bin/Release"
+packagePath = File.join(deployPath, "package")
+nuspec = "zipcodecoords.nuspec"
+packageLibPath = File.join(packagePath, "lib")
+binPath = "src/ZipCodeCoords/bin/Release"
 
 desc "Prep the packages"
 task :prepPackages => :unitTests do
 	FileSystem.DeleteDirectory(deployPath)
 	
-	FileSystem.EnsurePath(corePackageLibPath)
-	FileSystem.CopyFiles(File.join(coreBinPath, "Gribble.dll"), corePackageLibPath)
-	FileSystem.CopyFiles(File.join(coreBinPath, "Gribble.pdb"), corePackageLibPath)
-	
-	FileSystem.EnsurePath(nhibernatePackageLibPath)
-	FileSystem.CopyFiles(File.join(nhibernateBinPath, "Gribble.NHibernate.dll"), nhibernatePackageLibPath)
-	FileSystem.CopyFiles(File.join(nhibernateBinPath, "Gribble.NHibernate.pdb"), nhibernatePackageLibPath)
+	FileSystem.EnsurePath(packageLibPath)
+	FileSystem.CopyFiles(File.join(binPath, "ZipCodeCoords.dll"), packageLibPath)
+	FileSystem.CopyFiles(File.join(binPath, "ZipCodeCoords.pdb"), packageLibPath)
 end
 
-nuspec :createCoreSpec => :prepPackages do |nuspec|
-   nuspec.id = "gribble"
+nuspec :createSpec => :prepPackages do |nuspec|
+   nuspec.id = "zipcodecoords"
    nuspec.version = version
    nuspec.authors = "Mike O'Brien"
    nuspec.owners = "Mike O'Brien"
-   nuspec.title = "Gribble ORM"
-   nuspec.description = "Gribble is a simple, Linq enabled ORM designed to work with dynamically created tables."
-   nuspec.summary = "Gribble is a simple, Linq enabled ORM designed to work with dynamically created tables."
+   nuspec.title = "Zip Code Coords"
+   nuspec.description = "Enables the lookup of coordinates by zip code and vice versa."
+   nuspec.summary = "Enables the lookup of coordinates by zip code and vice versa."
    nuspec.language = "en-US"
-   nuspec.licenseUrl = "https://github.com/mikeobrien/Gribble/blob/master/LICENSE"
-   nuspec.projectUrl = "https://github.com/mikeobrien/Gribble"
-   nuspec.iconUrl = "https://github.com/mikeobrien/Gribble/raw/master/misc/gribble.png"
-   nuspec.working_directory = corePackagePath
-   nuspec.output_file = coreNuspec
-   nuspec.tags = "orm dal sql"
+   nuspec.licenseUrl = "https://github.com/mikeobrien/ZipCodeCoords/blob/master/LICENSE"
+   nuspec.projectUrl = "https://github.com/mikeobrien/ZipCodeCoords"
+   nuspec.iconUrl = "https://github.com/mikeobrien/ZipCodeCoords/raw/master/misc/logo.png"
+   nuspec.working_directory = packagePath
+   nuspec.output_file = nuspec
+   nuspec.tags = "zipcode coordinates"
 end
 
-nugetpack :createCorePackage => :createCoreSpec do |nugetpack|
-   nugetpack.nuspec = File.join(corePackagePath, coreNuspec)
-   nugetpack.base_folder = corePackagePath
+nugetpack :create File.join(packagePath, nuspec)
+   nugetpack.base_folder = packagePath
    nugetpack.output = deployPath
 end
 
-nugetpush :pushCorePackage => :createCorePackage do |nuget|
+nugetpush :pushPackage => :createPackage do |nuget|
     nuget.apikey = nugetApiKey
-    nuget.package = File.join(deployPath, "gribble.#{version}.nupkg")
-end
-
-nuspec :createNHibernateSpec => :prepPackages do |nuspec|
-   nuspec.id = "gribble.nhibernate"
-   nuspec.version = version
-   nuspec.authors = "Mike O'Brien"
-   nuspec.owners = "Mike O'Brien"
-   nuspec.title = "Gribble ORM NHibernate Integration"
-   nuspec.description = "Gribble NHibernate integration."
-   nuspec.summary = "Gribble NHibernate integration."
-   nuspec.language = "en-US"
-   nuspec.licenseUrl = "https://github.com/mikeobrien/Gribble/blob/master/LICENSE"
-   nuspec.projectUrl = "https://github.com/mikeobrien/Gribble"
-   nuspec.iconUrl = "https://github.com/mikeobrien/Gribble/raw/master/misc/gribble.png"
-   nuspec.working_directory = nhibernatePackagePath
-   nuspec.output_file = nhibernateNuspec
-   nuspec.tags = "orm dal sql nhibernate"
-   nuspec.dependency "gribble", version
-   nuspec.dependency "NHibernate", "3.1.0.4000"
-end
-
-nugetpack :createNHibernatePackage => :createNHibernateSpec do |nugetpack|
-   nugetpack.nuspec = File.join(nhibernatePackagePath, nhibernateNuspec)
-   nugetpack.base_folder = nhibernatePackagePath
-   nugetpack.output = deployPath
-end
-
-nugetpush :pushNHibernatePackage => :createNHibernatePackage do |nuget|
-    nuget.apikey = nugetApiKey
-    nuget.package = File.join(deployPath, "gribble.nhibernate.#{version}.nupkg")
+    nuget.package = File.join(deployPath, "zipcodecoords.#{version}.nupkg")
 end
