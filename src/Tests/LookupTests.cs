@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Should;
-using ZipCodes;
+using ZipCodeCoords;
 
 namespace Tests
 {

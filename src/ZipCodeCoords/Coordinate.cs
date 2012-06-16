@@ -1,4 +1,4 @@
-﻿namespace ZipCodes
+﻿namespace ZipCodeCoords
 {
     public class Coordinate
     {

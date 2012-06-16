@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZipCodes
+namespace ZipCodeCoords
 {
     public class InvalidZipCodeException : Exception
     {

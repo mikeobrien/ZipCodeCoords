@@ -8,8 +8,8 @@
     <ProjectGuid>{9832D966-BFA4-4D3F-8C7C-F3558027CDA9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZipCodes</RootNamespace>
-    <AssemblyName>ZipCodes</AssemblyName>
+    <RootNamespace>ZipCodeCoords</RootNamespace>
+    <AssemblyName>ZipCodeCoords</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>

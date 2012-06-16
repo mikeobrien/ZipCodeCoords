@@ -4,7 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Reflection;
 
-namespace ZipCodes
+namespace ZipCodeCoords
 {
     public static class Spatial
     {

@@ -49,7 +49,7 @@ deployPath = "deploy"
 packagePath = File.join(deployPath, "package")
 nuspecFilename = "zipcodecoords.nuspec"
 packageLibPath = File.join(packagePath, "lib")
-binPath = "src/ZipCodeCoords/bin/Release"
+binPath = "src/ZipCodeCoords/bin/release"
 
 task :prepPackage => :unitTests do
 	FileSystem.DeleteDirectory(deployPath)
