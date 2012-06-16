@@ -51,14 +51,14 @@ nuspec = "zipcodecoords.nuspec"
 packageLibPath = File.join(packagePath, "lib")
 binPath = "src/ZipCodeCoords/bin/Release"
 
-task :prepPackages => :unitTests do
+task :prepPackage => :unitTests do
 	FileSystem.DeleteDirectory(deployPath)
 	FileSystem.EnsurePath(packageLibPath)
 	FileSystem.CopyFiles(File.join(binPath, "ZipCodeCoords.dll"), packageLibPath)
 	FileSystem.CopyFiles(File.join(binPath, "ZipCodeCoords.pdb"), packageLibPath)
 end
 
-nuspec :createSpec => :prepPackages do |nuspec|
+nuspec :createSpec => :prepPackage do |nuspec|
    nuspec.id = "zipcodecoords"
    nuspec.version = version
    nuspec.authors = "Mike O'Brien"
@@ -75,7 +75,8 @@ nuspec :createSpec => :prepPackages do |nuspec|
    nuspec.tags = "zipcode coordinates"
 end
 
-nugetpack :createPackage File.join(packagePath, nuspec)
+nugetpack :createPackage => :createSpec do |nugetpack|
+   nugetpack.nuspec = File.join(packagePath, nuspec)
    nugetpack.base_folder = packagePath
    nugetpack.output = deployPath
 end
