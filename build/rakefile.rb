@@ -51,17 +51,15 @@ nuspec = "zipcodecoords.nuspec"
 packageLibPath = File.join(packagePath, "lib")
 binPath = "src/ZipCodeCoords/bin/Release"
 
+nuspec :yada => :prepPackage do |nuspec|
+    nuspec.id = "zipcodecoords"
+end
+
 task :prepPackage => :unitTests do
 	FileSystem.DeleteDirectory(deployPath)
 	FileSystem.EnsurePath(packageLibPath)
 	FileSystem.CopyFiles(File.join(binPath, "ZipCodeCoords.dll"), packageLibPath)
 	FileSystem.CopyFiles(File.join(binPath, "ZipCodeCoords.pdb"), packageLibPath)
-end
-
-nugetpack :createPackage => :createSpec do |nugetpack|
-   nugetpack.nuspec = File.join(packagePath, nuspec)
-   nugetpack.base_folder = packagePath
-   nugetpack.output = deployPath
 end
 
 nuspec :createSpec => :prepPackage do |nuspec|
@@ -79,6 +77,12 @@ nuspec :createSpec => :prepPackage do |nuspec|
    nuspec.working_directory = packagePath
    nuspec.output_file = nuspec
    nuspec.tags = "zipcode coordinates"
+end
+
+nugetpack :createPackage => :createSpec do |nugetpack|
+   nugetpack.nuspec = File.join(packagePath, nuspec)
+   nugetpack.base_folder = packagePath
+   nugetpack.output = deployPath
 end
 
 nugetpush :pushPackage => :createPackage do |nuget|
