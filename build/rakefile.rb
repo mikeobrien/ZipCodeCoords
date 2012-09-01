@@ -83,5 +83,5 @@ end
 
 nugetpush :pushPackage => :createPackage do |nuget|
     nuget.apikey = nugetApiKey
-    nuget.package = File.join(deployPath, "zipcodecoords.#{version}.nupkg")
+    nuget.package = File.join(deployPath, "zipcodecoords.#{version}.nupkg").gsub('/', '\\')
 end
