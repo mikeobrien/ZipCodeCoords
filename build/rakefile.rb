@@ -14,7 +14,7 @@ assemblyinfo :assemblyInfo do |asm|
     asm.product_name = "Zip Code Coords"
     asm.title = "Zip Code Coords"
     asm.description = "Zip code coordinate lookup."
-    asm.copyright = "Copyright (c) 2012 Ultraviolet Catastrophe"
+    asm.copyright = "Copyright (c) #{Time.now.year} Ultraviolet Catastrophe"
     asm.output_file = "src/ZipCodeCoords/Properties/AssemblyInfo.cs"
 end
 
