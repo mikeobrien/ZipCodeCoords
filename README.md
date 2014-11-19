@@ -1,6 +1,8 @@
 Zip Code Coordinates
 =============
 
+[![Nuget](http://img.shields.io/nuget/v/ZipCodeCoords.svg)](http://www.nuget.org/packages/ZipCodeCoords/) [![Nuget downloads](http://img.shields.io/nuget/dt/ZipCodeCoords.svg)](http://www.nuget.org/packages/ZipCodeCoords/)
+
 The Zip Code to Coordinates .NET Component enables you to retrieve the global coordinates (Latitude and Longitude) of a Zip Code. This small component, with a footprint of only 650k, has mapping data embedded as a binary resource so it does not require any external data.
 
 Overview
