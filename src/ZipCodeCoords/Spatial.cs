@@ -35,7 +35,7 @@ namespace ZipCodeCoords
                     var zipCode = reader.ReadInt32();
                     var latitude = reader.ReadDouble();
                     var longitude = reader.ReadDouble();
-                    coordinates.Add(new Coordinate(new ZipCode(zipCode), latitude, longitude));
+                    coordinates.Add(new Coordinate(new ZipCode(zipCode), longitude, latitude));
                 } while (reader.BaseStream.Position < reader.BaseStream.Length);
             }
             return coordinates;
